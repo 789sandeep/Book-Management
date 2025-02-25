@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .message {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .error-message {
+            background-color: #ffdddd;
+            color: #ff0000;
+            border: 1px solid #ffcccc;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div th:if="${Message}" style="color: red;" class="message error-message">
+            <p th:text="${Message}"></p>
+        </div>
+    
+        <div th:if="${successMessage}" style="color: green;" class="message success-message">
+            <p th:text="${successMessage}"></p>
+        </div>
+        <h1>Book Management</h1>
+
+        <!-- Add Book Form -->
+        <div class="form-section">
+            <h2>Add New Book</h2>
+            <form action="/bookForm" method="post">
+                <label for="bookId">Book ID</label>
+                <input type="number" id="bookId" name="id" placeholder="Enter Book ID" required>
+
+                <label for="bookNamee">Book Name</label>
+                <input type="text" name="bookName" id="bookNamee" placeholder="Enter Book Name" required>
+
+                <label for="authorNamee">Author Name</label>
+                <input type="text" name="authorName" id="authorNamee" placeholder="Enter Author Name" required>
+
+                <button type="submit">Add Book</button>
+            </form>
+        </div>
+
+        <!-- Update Book Form -->
+        <div class="form-section">
+            <h2>Update Book</h2>
+            <form action="/updateBook" method="post">
+                <label for="updateId">Book ID</label>
+                <input type="number" name="id" id="updateId" placeholder="Enter Book ID" required>
+
+                <label for="updateBookName">New Book Name</label>
+                <input type="text" name="bookName" id="updateBookName" placeholder="Enter New Book Name" >
+
+                <label for="updateAuthorName">New Author Name</label>
+                <input type="text" name="authorName" id="updateAuthorName" placeholder="Enter New Author Name" >
+
+                <button type="submit">Update Book</button>
+            </form>
+        </div>
+
+        <!-- Delete Book Form -->
+        <div class="form-section">
+            <h2>Delete Book</h2>
+            <form action="/deleteBook" method="post">
+                <label for="deleteId">Book ID</label>
+                <input type="number" name="id" id="deleteId" placeholder="Enter Book ID" required>
+                <button type="submit">Delete Book</button>
+            </form>
+        </div>
+
+        <!-- Get Book By ID Form -->
+        <div class="form-section">
+            <h2>Get Book by ID</h2>
+            <form action="/bookbyid" method="get">
+                <label for="getbookId">Book ID</label>
+                <input type="number" name="id" id="getbookId" placeholder="Enter Book ID" required>
+                <button type="submit">Get Book</button>
+            </form>
+        </div>
+
+        <!-- Get All Books Link -->
+        <a href="/bookList">View All Books</a>
+    </div>
+
+
+</body>
+</html>
